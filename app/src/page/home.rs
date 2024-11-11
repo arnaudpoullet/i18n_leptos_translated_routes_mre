@@ -1,13 +1,12 @@
-use leptos::IntoView;
-use leptos::prelude::*;
-use leptos_router::components::A;
 use crate::i18n::*;
+use leptos::prelude::*;
+use leptos::IntoView;
 use leptos_i18n::t;
+use leptos_router::components::A;
 
 /// Renders the home page of your application.
 #[component]
 pub fn HomePage() -> impl IntoView {
-
     let i18n = use_i18n();
 
     view! {
@@ -22,14 +21,18 @@ pub fn HomePage() -> impl IntoView {
               </div>
               <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="mx-auto max-w-7xl lg:mx-0">
-                  <h2 class="text-5xl font-semibold tracking-tight text-white sm:text-7xl">{{ t!(i18n,home.banner.title) }}</h2>
-        <p class="mt-8 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">{{ t!(i18n,home.banner.sub_title) }}</p>
+                  <h2 class="text-5xl font-semibold tracking-tight text-white sm:text-7xl">{t!(i18n,home.banner.title)}</h2>
+                  <p class="mt-8 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">{t!(i18n,home.banner.sub_title)}</p>
                 </div>
               </div>
             </div>
-            {[Locale::en,Locale::nl,Locale::fr].into_iter().map(|l| view!{
-                <A href=format!("/{}",l.as_str()) {..} class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">{l.as_str()}</A>
-              }).collect_view()}
+            <For
+              each = Locale::get_all
+              key = |locale| **locale
+              let:locale
+            >
+              <A href=format!("/{}", locale) {..} class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">{locale.as_str()}</A>
+            </For>
         </div>
     }
 }

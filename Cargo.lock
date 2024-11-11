@@ -1608,7 +1608,7 @@ dependencies = [
 [[package]]
 name = "leptos_i18n"
 version = "0.5.0-rc1"
-source = "git+https://github.com/Baptistemontan/leptos_i18n?rev=668b1e4#668b1e45aee27e37e4128f72db2a3c8a0d10deab"
+source = "git+https://github.com/Baptistemontan/leptos_i18n?rev=76fb994#76fb99451d8c71161e14c8f112d5a543f0cde11a"
 dependencies = [
  "codee",
  "default-struct-builder",
@@ -1630,7 +1630,7 @@ dependencies = [
 [[package]]
 name = "leptos_i18n_macro"
 version = "0.5.0-rc1"
-source = "git+https://github.com/Baptistemontan/leptos_i18n?rev=668b1e4#668b1e45aee27e37e4128f72db2a3c8a0d10deab"
+source = "git+https://github.com/Baptistemontan/leptos_i18n?rev=76fb994#76fb99451d8c71161e14c8f112d5a543f0cde11a"
 dependencies = [
  "fixed_decimal",
  "icu",
@@ -1646,7 +1646,7 @@ dependencies = [
 [[package]]
 name = "leptos_i18n_parser"
 version = "0.5.0-rc1"
-source = "git+https://github.com/Baptistemontan/leptos_i18n?rev=668b1e4#668b1e45aee27e37e4128f72db2a3c8a0d10deab"
+source = "git+https://github.com/Baptistemontan/leptos_i18n?rev=76fb994#76fb99451d8c71161e14c8f112d5a543f0cde11a"
 dependencies = [
  "fixed_decimal",
  "icu",
