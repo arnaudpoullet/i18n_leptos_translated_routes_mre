@@ -79,14 +79,11 @@ pub fn Layout() -> impl IntoView {
                     </button>
                   </div>
                   <div class="hidden lg:flex lg:gap-x-12 lg:px-8">
-                    //This fails with "CC linking issue" so it is commented
                     <A href=move || format!("/{}/{}",locale(),t_string!(i18n,common.menu.search_project_path)) exact=true {..} class="text-sm/6 font-semibold text-gray-900">{t!(i18n,common.menu.search_project_label)}</A>
-                    <A href=move || format!("/{}/{}",locale(),t_string!(i18n,common.menu.submit_project_path)) exact=true {..} class="text-sm/6 font-semibold text-gray-900">{t!(i18n,common.menu.submit_project_label)}</A>
+                    //<A href=move || format!("/{}/{}",locale(),t_string!(i18n,common.menu.submit_project_path)) exact=true {..} class="text-sm/6 font-semibold text-gray-900">{t!(i18n,common.menu.submit_project_label)}</A>
                   </div>
                 </nav>
-                // Mobile menu, show/hide based on menu open state.
                 <div class:hidden=move || !show.get() class="lg:hidden" role="dialog" aria-modal="true">
-                  // Background backdrop, show/hide based on slide-over state.
                   <div class="fixed inset-0 z-50 bg-light-color opacity-50"></div>
                   <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                     <div class="flex items-center justify-between">
@@ -106,13 +103,13 @@ pub fn Layout() -> impl IntoView {
                     <div class="mt-6 flow-root">
                       <div class="-my-6 divide-y divide-gray-500/10">
                         <div class="space-y-2 py-6">
-                          <A href=move || format!("/{}/{}",locale(),t_string!(i18n,common.menu.search_project_path)) exact=true on:click=move |_| show.set(false) {..} class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">{t!(i18n,common.menu.search_project_label)}</A>
-                          <A href=move || format!("/{}/{}",locale(),t_string!(i18n,common.menu.submit_project_path)) exact=true on:click=move |_| show.set(false) {..} class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">{t!(i18n,common.menu.submit_project_label)}</A>
+                          //<A href=move || format!("/{}/{}",locale(),t_string!(i18n,common.menu.search_project_path)) exact=true on:click=move |_| show.set(false) {..} class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">{t!(i18n,common.menu.search_project_label)}</A>
+                          //<A href=move || format!("/{}/{}",locale(),t_string!(i18n,common.menu.submit_project_path)) exact=true on:click=move |_| show.set(false) {..} class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">{t!(i18n,common.menu.submit_project_label)}</A>
                         </div>
                         <div class="py-6">
-                            {[Locale::en,Locale::nl,Locale::fr].into_iter().map(|l| view!{
+                            /*{[Locale::en,Locale::nl,Locale::fr].into_iter().map(|l| view!{
                                 <A href=format!("/{}/{}",l.as_str(),td_string!(l,common.menu.search_project_path)) on:click=move |_| show.set(false) {..} class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">{l.as_str()}</A>
-                            }).collect_view()}
+                            }).collect_view()}*/
 
                         </div>
                       </div>
@@ -126,7 +123,7 @@ pub fn Layout() -> impl IntoView {
                     <I18nRoute view=|| view! { <Outlet />} >
                         <Route path=StaticSegment("") view=HomePage/>
                         <Route path=i18n_path!(Locale, |locale| td_string!(locale, common.menu.search_project_path)) view=SearchProject/>
-                        <Route path=i18n_path!(Locale, |locale| td_string!(locale, common.menu.submit_project_path)) view=SubmitProject/>
+                        //<Route path=i18n_path!(Locale, |locale| td_string!(locale, common.menu.submit_project_path)) view=SubmitProject/>
                     </I18nRoute>
                 </Routes>
             </main>
