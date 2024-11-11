@@ -39,11 +39,11 @@ pub fn App() -> impl IntoView {
 
     view! {
         <I18nContextProvider>
-        <Stylesheet id="leptos" href="/pkg/leptos_translated_routes.css"/>
-        // sets the document title
-        <Title text="Translated routes"/>
+            <Stylesheet id="leptos" href="/pkg/leptos_translated_routes.css"/>
+            // sets the document title
+            <Title text="Translated routes"/>
 
-        <Layout/>
+            <Layout/>
         </I18nContextProvider>
     }
 }
