@@ -1,6 +1,6 @@
-use leptos::IntoView;
-use leptos::prelude::*;
 use crate::i18n::*;
+use leptos::prelude::*;
+use leptos::IntoView;
 use leptos_i18n::t;
 
 /// Renders the home page of your application.
@@ -14,7 +14,7 @@ pub fn SubmitProject() -> impl IntoView {
     view! {
         <div class="m-2">
             <h1 class="text-2xl">{l()}</h1>
-            <h1 class="text-2xl">{{t!(i18n,submit_project.submit_project_title)}}</h1>
+            <h1 class="text-2xl">{{t!(i18n, submit_project.submit_project_title)}}</h1>
         </div>
     }
 }
