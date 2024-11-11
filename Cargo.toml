@@ -10,7 +10,7 @@ opt-level = 'z'
 
 [workspace.dependencies]
 leptos = { version = "0.7.0-rc1" }
-leptos_meta = { version = "0.7.0-rc1"}
+leptos_meta = { version = "0.7.0-rc1" }
 leptos_router = { version = "0.7.0-rc1" }
 leptos_axum = { version = "0.7.0-rc1" }
 
@@ -26,7 +26,11 @@ tokio = { version = "1.33.0", features = ["full"] }
 tower = { version = "0.5.1", features = ["full"] }
 tower-http = { version = "0.6.1", features = ["full"] }
 wasm-bindgen = "=0.2.95"
-leptos_i18n = { git="https://github.com/Baptistemontan/leptos_i18n", rev="668b1e4" , default-features = false, features = ["track_locale_files","json_files","interpolate_display"] }
+leptos_i18n = { git = "https://github.com/Baptistemontan/leptos_i18n", rev = "76fb994", default-features = false, features = [
+    "track_locale_files",
+    "json_files",
+    "interpolate_display",
+] }
 
 # See https://github.com/akesson/cargo-leptos for documentation of all the parameters.
 
@@ -102,4 +106,3 @@ lib-features = []
 lib-default-features = false
 
 watch-additional-files = ["app/locales"]
-
