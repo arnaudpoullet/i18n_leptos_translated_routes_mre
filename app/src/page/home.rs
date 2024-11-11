@@ -1,13 +1,9 @@
 use leptos::IntoView;
 use leptos::prelude::*;
-use crate::i18n::*;
-use leptos_i18n::t;
 
 /// Renders the home page of your application.
 #[component]
 pub fn HomePage() -> impl IntoView {
-
-    let i18n = use_i18n();
 
     view! {
         <div class="">
@@ -21,8 +17,8 @@ pub fn HomePage() -> impl IntoView {
               </div>
               <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="mx-auto max-w-7xl lg:mx-0">
-                  <h2 class="text-5xl font-semibold tracking-tight text-white sm:text-7xl">{{ t!(i18n,home.banner.title) }}</h2>
-        <p class="mt-8 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">{{ t!(i18n,home.banner.sub_title) }}</p>
+                  <h2 class="text-5xl font-semibold tracking-tight text-white sm:text-7xl">Title</h2>
+        <p class="mt-8 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">Subtitle</p>
                 </div>
               </div>
             </div>

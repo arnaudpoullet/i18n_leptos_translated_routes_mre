@@ -9,10 +9,6 @@ use leptos_router::nested_router::Outlet;
 use crate::page::home::HomePage;
 use crate::page::search_project::SearchProject;
 use crate::page::submit_project::SubmitProject;
-use crate::i18n::*;
-use leptos_i18n::{t,i18n_path,td_string,t_string};
-
-leptos_i18n::load_locales!();
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
     view! {
@@ -38,23 +34,17 @@ pub fn App() -> impl IntoView {
     provide_meta_context();
 
     view! {
-        <I18nContextProvider>
         <Stylesheet id="leptos" href="/pkg/leptos_translated_routes.css"/>
         // sets the document title
         <Title text="Translated routes"/>
 
         <Layout/>
-        </I18nContextProvider>
     }
 }
 
 #[component]
 pub fn Layout() -> impl IntoView {
     let show = RwSignal::new(false);
-
-    let i18n = use_i18n();
-
-    let locale = move || i18n.get_locale().as_str();
 
     view! {
 
@@ -80,8 +70,8 @@ pub fn Layout() -> impl IntoView {
                   </div>
                   <div class="hidden lg:flex lg:gap-x-12 lg:px-8">
                     //This fails with "CC linking issue" so it is commented
-                    <A href=move || format!("/{}/{}",locale(),t_string!(i18n,common.menu.search_project_path)) exact=true {..} class="text-sm/6 font-semibold text-gray-900">{t!(i18n,common.menu.search_project_label)}</A>
-                    <A href=move || format!("/{}/{}",locale(),t_string!(i18n,common.menu.submit_project_path)) exact=true {..} class="text-sm/6 font-semibold text-gray-900">{t!(i18n,common.menu.submit_project_label)}</A>
+                    //<A href=move || format!("/{}/{}",locale(),t_string!(i18n,common.menu.search_project_path)) exact=true {..} class="text-sm/6 font-semibold text-gray-900">{t!(i18n,common.menu.search_project_label)}</A>
+                    //<A href=move || format!("/{}/{}",locale(),t_string!(i18n,common.menu.submit_project_path)) exact=true {..} class="text-sm/6 font-semibold text-gray-900">{t!(i18n,common.menu.submit_project_label)}</A>
                   </div>
                 </nav>
                 // Mobile menu, show/hide based on menu open state.
@@ -106,13 +96,11 @@ pub fn Layout() -> impl IntoView {
                     <div class="mt-6 flow-root">
                       <div class="-my-6 divide-y divide-gray-500/10">
                         <div class="space-y-2 py-6">
-                          <A href=move || format!("/{}/{}",locale(),t_string!(i18n,common.menu.search_project_path)) exact=true on:click=move |_| show.set(false) {..} class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">{t!(i18n,common.menu.search_project_label)}</A>
-                          <A href=move || format!("/{}/{}",locale(),t_string!(i18n,common.menu.submit_project_path)) exact=true on:click=move |_| show.set(false) {..} class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">{t!(i18n,common.menu.submit_project_label)}</A>
+                          <A href=move || format!("/en/{}","search") exact=true on:click=move |_| show.set(false) {..} class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Search</A>
+                          <A href=move || format!("/en/{}","submit") exact=true on:click=move |_| show.set(false) {..} class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Submit</A>
                         </div>
                         <div class="py-6">
-                            {[Locale::en,Locale::nl,Locale::fr].into_iter().map(|l| view!{
-                                <A href=format!("/{}/{}",l.as_str(),td_string!(l,common.menu.search_project_path)) on:click=move |_| show.set(false) {..} class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">{l.as_str()}</A>
-                            }).collect_view()}
+                                <A href="/en" on:click=move |_| show.set(false) {..} class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">en</A>
 
                         </div>
                       </div>
@@ -123,11 +111,9 @@ pub fn Layout() -> impl IntoView {
             <main class="mt-20">
 
                 <Routes fallback=|| "Page not found.".into_view()>
-                    <I18nRoute view=|| view! { <Outlet />} >
                         <Route path=StaticSegment("") view=HomePage/>
-                        <Route path=i18n_path!(Locale, |locale| td_string!(locale, common.menu.search_project_path)) view=SearchProject/>
-                        <Route path=i18n_path!(Locale, |locale| td_string!(locale, common.menu.submit_project_path)) view=SubmitProject/>
-                    </I18nRoute>
+                        <Route path=StaticSegment("/search") view=SearchProject/>
+                        <Route path=StaticSegment("/submit") view=SubmitProject/>
                 </Routes>
             </main>
         </Router>
