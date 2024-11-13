@@ -38,7 +38,7 @@ pub fn App() -> impl IntoView {
     provide_meta_context();
 
     view! {
-        <I18nContextProvider>
+        <I18nContextProvider parse_locale_from_path="/">
             <Stylesheet id="leptos" href="/pkg/leptos_translated_routes.css"/>
             // sets the document title
             <Title text="Translated routes"/>
@@ -65,9 +65,9 @@ pub fn Layout() -> impl IntoView {
                   <div class="flex lg:flex-1">
                     <A href="/">
                       <span class="sr-only">"Logo text"</span>
-                        <div style="height:64px; width:112px;">
-                            <p>LOGO</p>
-                        </div>
+                      <div style="height:64px; width:112px;">
+                          <p>LOGO</p>
+                      </div>
                     </A>
                   </div>
                   <div class="flex lg:hidden">
@@ -121,7 +121,6 @@ pub fn Layout() -> impl IntoView {
                 </div>
               </header>
             <main class="mt-20">
-
                 <Routes fallback=|| "Page not found.".into_view()>
                     <I18nRoute view=|| view! { <Outlet />} >
                         <Route path=StaticSegment("") view=HomePage/>
