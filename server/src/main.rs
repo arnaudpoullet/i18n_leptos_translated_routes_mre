@@ -1,8 +1,11 @@
+#![recursion_limit = "256"]
+
 use axum::Router;
 use leptos::prelude::*;
 use leptos_axum::{generate_route_list, LeptosRoutes};
 use app::*;
 use leptos::logging::log;
+
 
 #[tokio::main]
 async fn main() {

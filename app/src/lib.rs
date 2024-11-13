@@ -43,24 +43,34 @@ pub fn App() -> impl IntoView {
             // sets the document title
             <Title text="Translated routes"/>
 
-            <Layout/>
+            <Router>
+                <Routes fallback=|| "Page not found.".into_view()>
+                    <I18nRoute view=|| view! {
+                                    <main class="mt-20">
+                                        <Header />
+                                        <Outlet />
+                                    </main>
+                                } >
+                        <Route path=StaticSegment("") view=HomePage/>
+                        <Route path=i18n_path!(Locale, |locale| td_string!(locale, common.menu.search_project_path)) view=SearchProject/>
+                        <Route path=i18n_path!(Locale, |locale| td_string!(locale, common.menu.submit_project_path)) view=SubmitProject/>
+                    </I18nRoute>
+                </Routes>
+            </Router>
         </I18nContextProvider>
     }
 }
 
 #[component]
-pub fn Layout() -> impl IntoView {
+fn Header() -> impl IntoView {
     let show = RwSignal::new(false);
 
     let i18n = use_i18n();
 
     let locale = move || i18n.get_locale().as_str();
 
-    view! {
-
-        // content for this welcome page
-        <Router>
-            <header class="absolute inset-x-0 top-0 z-50 pt-2">
+    view!{
+        <header class="absolute inset-x-0 top-0 z-50 pt-2">
                 <nav class="flex items-center justify-between px-6 h-[72px] lg:px-8" aria-label="Global">
                   <div class="flex lg:flex-1">
                     <A href="/">
@@ -120,16 +130,5 @@ pub fn Layout() -> impl IntoView {
                   </div>
                 </div>
               </header>
-            <main class="mt-20">
-
-                <Routes fallback=|| "Page not found.".into_view()>
-                    <I18nRoute view=|| view! { <Outlet />} >
-                        <Route path=StaticSegment("") view=HomePage/>
-                        <Route path=i18n_path!(Locale, |locale| td_string!(locale, common.menu.search_project_path)) view=SearchProject/>
-                        <Route path=i18n_path!(Locale, |locale| td_string!(locale, common.menu.submit_project_path)) view=SubmitProject/>
-                    </I18nRoute>
-                </Routes>
-            </main>
-        </Router>
     }
 }
